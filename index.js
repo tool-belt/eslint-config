@@ -1,3 +1,4 @@
+const extensions = ['.ts', '.tsx', '.js', '.jsx'];
 const plugins = ['sort-imports-es6-autofix'];
 const extendsList = [
     'eslint:recommended',
@@ -72,8 +73,8 @@ const rules = {
 
 const testing = {
     files: [
-        `**/*.{spec,test}.{${extensions}}`,
-        `**/jest.setup.{${extensions}}`,
+        `**/*.{spec,test}.{${extensions.join(',')}}`,
+        `**/jest.setup.{${extensions.join(',')}}`,
     ],
     env: {
         'jest': true,
@@ -106,7 +107,7 @@ const testing = {
 };
 
 module.exports = {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: extensions.map((extension) => `**/*${extension}`),
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 2021,
