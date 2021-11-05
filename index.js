@@ -1,4 +1,3 @@
-const extensions = ['.ts', '.tsx', '.js', '.jsx'];
 const plugins = ['sort-imports-es6-autofix'];
 const extendsList = [
     'eslint:recommended',
@@ -70,11 +69,13 @@ const rules = {
     '@typescript-eslint/no-extra-non-null-assertion': 2,
     '@typescript-eslint/no-unnecessary-boolean-literal-compare': 2,
 };
+const extensions = 'ts,tsx,js,jsx';
 
 const testing = {
     files: [
-        `**/*.{spec,test}.{${extensions.join(',')}}`,
-        `**/jest.setup.{${extensions.join(',')}}`,
+        `**/*.{spec,test}.{${extensions}}`,
+        `**/{tests,test,__tests__,__mock__,__mocks__}/*.{${extensions}}`,
+        `**/jest.*.{${extensions}}`,
     ],
     env: {
         'jest': true,
@@ -107,7 +108,6 @@ const testing = {
 };
 
 module.exports = {
-    files: extensions.map((extension) => `**/*${extension}`),
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 2021,
