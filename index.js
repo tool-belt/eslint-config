@@ -1,4 +1,4 @@
-const plugins = ['sort-imports-es6-autofix'];
+const plugins = ['simple-import-sort'];
 const extendsList = [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -15,7 +15,8 @@ const rules = {
     'no-console': 1,
     'curly': 2,
     'eqeqeq': 2,
-    'sort-imports-es6-autofix/sort-imports-es6': 2,
+    'simple-import-sort/imports': 2,
+    'simple-import-sort/exports': 2,
     'prefer-const': [
         'error',
         {
@@ -27,6 +28,9 @@ const rules = {
     'import/namespace': 0,
     'import/default': 0,
     'import/no-named-as-default-member': 0,
+    'import/first': 2,
+    'import/newline-after-import': 2,
+    'import/no-duplicates': 2,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/prefer-optional-chain': 2,
     '@typescript-eslint/prefer-nullish-coalescing': 2,

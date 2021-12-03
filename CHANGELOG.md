@@ -9,3 +9,8 @@
 [1.0.2]
 
 -   fix testing glob
+
+[1.1.0]
+
+-   update dependencies
+-   replace eslint-plugin-sort-imports-es6-autofix with eslint-plugin-simple-import-sort

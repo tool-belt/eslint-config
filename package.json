@@ -24,19 +24,19 @@
   "author": "Na'aman Hirschfeld",
   "license": "MIT",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.3.0",
-    "@typescript-eslint/parser": "^5.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-jest": "^25.2.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jest": "^25.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-sonarjs": "^0.10.0",
-    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0"
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sonarjs": "^0.11.0"
   },
   "devDependencies": {
-    "eslint": "^8.1.0",
-    "prettier": "^2.4.1"
+    "eslint": "^8.3.0",
+    "prettier": "^2.5.0"
   },
   "peerDependencies": {
     "eslint": ">=8.0.0",
