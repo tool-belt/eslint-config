@@ -14,3 +14,7 @@
 
 -   update dependencies
 -   replace eslint-plugin-sort-imports-es6-autofix with eslint-plugin-simple-import-sort
+
+[1.1.1]
+
+-   fix rule definitions
