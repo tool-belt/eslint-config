@@ -113,10 +113,10 @@ const testing = {
 module.exports = {
     parser: '@typescript-eslint/parser',
     parserOptions: {
-        ecmaVersion: 2021,
+        ecmaVersion: 2022,
         sourceType: 'module',
     },
-    env: { node: true, es2021: true },
+    env: { node: true, es2022: true },
     plugins,
     extends: extendsList,
     rules,

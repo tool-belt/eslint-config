@@ -18,3 +18,8 @@
 [1.1.1]
 
 -   fix rule definitions
+
+[1.2.0]
+
+- update dependencies
+- update ECMA version to 2022
