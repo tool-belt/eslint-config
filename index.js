@@ -121,5 +121,5 @@ module.exports = {
     extends: extendsList,
     rules,
     overrides: [testing],
-    ignorePatterns: ['*.shim.d.ts'],
+    ignorePatterns: ['*.shim.d.ts', '.eslintrc.js'],
 };
