@@ -26,12 +26,25 @@ npm i --save-dev @tool-belt/eslint-config
 Also make sure to have `prettier` and of course `typescript` and `eslint` installed as well.
 Then add the following config to your extend array in your eslint config file.
 
-```js
-// .eslintrc.js
+```javascript
+// eslint.config.js
 module.exports = {
     extends: ['@tool-belt/eslint-config'],
     parserOptions: {
-        // should be the path to the projects tsconfig.json
+        project: './tsconfig.json',
+    },
+};
+```
+
+## React
+
+The react config includes the base config, browser globals, react, react-hooks and testing-library/react. To use it simply
+
+```javascript
+// eslint.config.js
+module.exports = {
+    extends: ['@tool-belt/eslint-config/react'],
+    parserOptions: {
         project: './tsconfig.json',
     },
 };
