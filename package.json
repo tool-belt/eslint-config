@@ -1,6 +1,6 @@
 {
     "name": "@tool-belt/eslint-config",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "description": "Comprehensive ESLint config for TypeScript based projects",
     "main": "index.js",
     "files": [
