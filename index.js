@@ -81,6 +81,10 @@ const rules = {
     '@typescript-eslint/no-magic-numbers': [
         'warn',
         {
+            ignore: [-1, 0, 1, 2],
+            ignoreDefaultValues: true,
+            ignoreClassFieldInitialValues: true,
+            ignoreArrayIndexes: true,
             ignoreEnums: true,
             ignoreNumericLiteralTypes: true,
             ignoreReadonlyClassProperties: true,
