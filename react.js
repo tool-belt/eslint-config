@@ -21,11 +21,7 @@ const reactRules = {
     'react/display-name': 0,
     'react/prop-types': 0,
 };
-const testPlugins = [
-    'plugin:testing-library/react',
-    'plugin:jest/recommended',
-    'plugin:jest/style',
-];
+const testPlugins = ['plugin:testing-library/react'];
 
 const overrides = base.overrides.map((override) => ({
     ...override,

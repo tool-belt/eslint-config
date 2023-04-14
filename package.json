@@ -19,7 +19,6 @@
     "keywords": [
         "eslint",
         "eslint-config",
-        "jest",
         "react",
         "typescript",
         "typescript-eslint"
@@ -30,27 +29,26 @@
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-eslint-comments": "^3.2.0",
         "eslint-plugin-import": "^2.27.5",
-        "eslint-plugin-jest": "^27.2.1",
         "eslint-plugin-jsx-a11y": "^6.7.1",
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.32.2",
         "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-simple-import-sort": "^8.0.0",
-        "eslint-plugin-sonarjs": "^0.16.0",
-        "eslint-plugin-testing-library": "^5.10.2"
+        "eslint-plugin-simple-import-sort": "^10.0.0",
+        "eslint-plugin-sonarjs": "^0.19.0",
+        "eslint-plugin-testing-library": "^5.10.3"
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^5.57.0",
-        "@typescript-eslint/parser": "^5.57.0",
-        "eslint": "^8.37.0",
+        "@typescript-eslint/eslint-plugin": "^5.58.0",
+        "@typescript-eslint/parser": "^5.58.0",
+        "eslint": "^8.38.0",
         "prettier": "^2.8.7",
-        "typescript": "^4.9.5"
+        "typescript": "^5.0.4"
     },
     "peerDependencies": {
         "@typescript-eslint/eslint-plugin": ">=5.0.0",
         "@typescript-eslint/parser": ">=5.0.0",
         "eslint": ">=8.0.0",
         "prettier": ">=2.0.0",
-        "typescript": ">=4.0.0"
+        "typescript": ">=5.0.0"
     }
 }

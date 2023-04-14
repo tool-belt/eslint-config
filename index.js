@@ -112,12 +112,7 @@ const testing = {
     files: [
         `**/*.{spec,test}.{${extensions}}`,
         `**/{tests,test,__tests__,__mock__,__mocks__}/*.{${extensions}}`,
-        `**/jest.*.{${extensions}}`,
     ],
-    env: {
-        'jest': true,
-        'jest/globals': true,
-    },
     rules: {
         ...rules,
         'no-console': 0,
@@ -135,13 +130,11 @@ const testing = {
         '@typescript-eslint/no-var-requires': 0,
         '@typescript-eslint/restrict-template-expressions': 0,
         '@typescript-eslint/unbound-method': 0,
-        'jest/no-conditional-expect': 0,
-        'jest/no-try-expect': 0,
         'sonarjs/cognitive-complexity': 0,
         'sonarjs/no-duplicate-string': 0,
         'sonarjs/no-identical-functions': 0,
     },
-    extends: [...extendsList, 'plugin:jest/recommended', 'plugin:jest/style'],
+    extends: extendsList,
 };
 
 module.exports = {

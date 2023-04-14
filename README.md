@@ -6,7 +6,6 @@ This is an opinionated eslint config meant for TypeScript based projects. It bun
 -   `eslint-config-prettier`
 -   `eslint-plugin-eslint-comments`
 -   `eslint-plugin-import`
--   `eslint-plugin-jest`
 -   `eslint-plugin-prettier`
 -   `eslint-plugin-simple-import-sort`
 -   `eslint-plugin-sonarjs`
