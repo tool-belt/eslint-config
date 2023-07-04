@@ -1,4 +1,4 @@
-const plugins = ['simple-import-sort'];
+const plugins = ['simple-import-sort', 'unused-imports'];
 const extendsList = [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -37,6 +37,7 @@ const rules = {
     'import/first': 2,
     'import/newline-after-import': 2,
     'import/no-duplicates': 2,
+    'unused-imports/no-unused-imports': 2,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/prefer-optional-chain': 2,
     '@typescript-eslint/prefer-nullish-coalescing': 2,
