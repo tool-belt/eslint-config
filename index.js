@@ -1,14 +1,22 @@
-const plugins = ['simple-import-sort', 'unused-imports'];
+const plugins = ['simple-import-sort', 'unused-imports', 'optimize-regex'];
 const extendsList = [
     'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:@typescript-eslint/strict',
+    'plugin:@typescript-eslint/strict-type-checked',
+    'plugin:@typescript-eslint/stylistic',
+    'plugin:@typescript-eslint/stylistic-type-checked',
+    'plugin:unicorn/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
     'plugin:sonarjs/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:n/recommended',
+    'plugin:promise/recommended',
     'plugin:prettier/recommended',
     'prettier',
 ];
@@ -37,6 +45,7 @@ const rules = {
     'import/first': 2,
     'import/newline-after-import': 2,
     'import/no-duplicates': 2,
+    'optimize-regex/optimize-regex': 'warn',
     'unused-imports/no-unused-imports': 2,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/prefer-optional-chain': 2,
@@ -82,7 +91,7 @@ const rules = {
     '@typescript-eslint/no-magic-numbers': [
         'warn',
         {
-            ignore: [-1, 0, 1, 2],
+            ignore: [-1, 0, 1, 2, 10, 100],
             ignoreDefaultValues: true,
             ignoreClassFieldInitialValues: true,
             ignoreArrayIndexes: true,
@@ -141,10 +150,10 @@ const testing = {
 module.exports = {
     parser: '@typescript-eslint/parser',
     parserOptions: {
-        ecmaVersion: 2022,
+        ecmaVersion: 2023,
         sourceType: 'module',
     },
-    env: { node: true, es2022: true },
+    env: { node: true, es2023: true },
     plugins,
     extends: extendsList,
     rules,
