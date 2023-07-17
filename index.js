@@ -20,33 +20,24 @@ const extendsList = [
     'plugin:prettier/recommended',
     'prettier',
 ];
-const rules = {
+const defaultRules = {
     'no-console': 1,
     'curly': 2,
     'eqeqeq': 2,
-    'simple-import-sort/imports': 2,
-    'simple-import-sort/exports': 2,
     'prefer-const': [
         'error',
         {
             destructuring: 'all',
         },
     ],
-    'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
-    'import/named': 0,
     'no-magic-numbers': 0,
     'no-unused-vars': 0,
     'no-unused-expressions': 0,
     'no-useless-constructor': 0,
     'no-throw-literal': 0,
-    'import/namespace': 0,
-    'import/default': 0,
-    'import/no-named-as-default-member': 0,
-    'import/first': 2,
-    'import/newline-after-import': 2,
-    'import/no-duplicates': 2,
-    'optimize-regex/optimize-regex': 'warn',
-    'unused-imports/no-unused-imports': 2,
+};
+
+const tsRules = {
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/prefer-optional-chain': 2,
     '@typescript-eslint/prefer-nullish-coalescing': 2,
@@ -88,19 +79,6 @@ const rules = {
     '@typescript-eslint/no-unnecessary-condition': 2,
     '@typescript-eslint/no-extra-non-null-assertion': 2,
     '@typescript-eslint/no-unnecessary-boolean-literal-compare': 2,
-    '@typescript-eslint/no-magic-numbers': [
-        'warn',
-        {
-            ignore: [-1, 0, 1, 2, 10, 100],
-            ignoreDefaultValues: true,
-            ignoreClassFieldInitialValues: true,
-            ignoreArrayIndexes: true,
-            ignoreEnums: true,
-            ignoreNumericLiteralTypes: true,
-            ignoreReadonlyClassProperties: true,
-            ignoreTypeIndexes: true,
-        },
-    ],
     '@typescript-eslint/no-unused-expressions': 1,
     '@typescript-eslint/no-useless-constructor': 1,
     '@typescript-eslint/consistent-type-definitions': 1,
@@ -115,6 +93,54 @@ const rules = {
     '@typescript-eslint/no-redundant-type-constituents': 1,
     '@typescript-eslint/no-inferrable-types': 2,
     '@typescript-eslint/no-for-in-array': 2,
+    '@typescript-eslint/no-magic-numbers': [
+        'warn',
+        {
+            ignore: [-1, 0, 1, 2, 10, 100],
+            ignoreDefaultValues: true,
+            ignoreClassFieldInitialValues: true,
+            ignoreArrayIndexes: true,
+            ignoreEnums: true,
+            ignoreNumericLiteralTypes: true,
+            ignoreReadonlyClassProperties: true,
+            ignoreTypeIndexes: true,
+        },
+    ],
+};
+
+const rules = {
+    ...defaultRules,
+    ...tsRules,
+    'n/no-missing-import': 0,
+    'n/no-extraneous-import': 0,
+    'unicorn/prevent-abbreviations': [
+        'error',
+        {
+            replacements: {
+                props: {
+                    properties: false,
+                },
+            },
+        },
+    ],
+    'unicorn/no-null': 0,
+    'unicorn/no-array-reduce': 0,
+    'unicorn/no-array-for-each': 0,
+    'unicorn/prefer-module': 0,
+    'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
+    'import/named': 0,
+    'simple-import-sort/imports': 2,
+    'simple-import-sort/exports': 2,
+    'import/namespace': 0,
+    'import/default': 0,
+    'import/no-named-as-default-member': 0,
+    'import/first': 2,
+    'import/newline-after-import': 2,
+    'import/no-duplicates': 2,
+    'optimize-regex/optimize-regex': 'warn',
+    'unused-imports/no-unused-imports': 2,
+    'sonarjs/no-identical-functions': ['error', 20],
+    'sonarjs/elseif-without-else': 2,
 };
 const extensions = 'ts,tsx,js,jsx';
 
