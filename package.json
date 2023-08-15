@@ -38,16 +38,16 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-simple-import-sort": "^10.0.0",
         "eslint-plugin-sonarjs": "^0.20.0",
-        "eslint-plugin-testing-library": "^5.11.1",
+        "eslint-plugin-testing-library": "^6.0.0",
         "eslint-plugin-tsdoc": "0.2.17",
         "eslint-plugin-unicorn": "48.0.1",
         "eslint-plugin-unused-imports": "^3.0.0"
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^6.3.0",
-        "@typescript-eslint/parser": "^6.3.0",
-        "eslint": "^8.46.0",
-        "prettier": "^3.0.1",
+        "@typescript-eslint/eslint-plugin": "^6.4.0",
+        "@typescript-eslint/parser": "^6.4.0",
+        "eslint": "^8.47.0",
+        "prettier": "^3.0.2",
         "typescript": "^5.1.6"
     },
     "peerDependencies": {
