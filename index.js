@@ -38,44 +38,25 @@ const defaultRules = {
 };
 
 const tsRules = {
-    '@typescript-eslint/no-explicit-any': 0,
-    '@typescript-eslint/prefer-optional-chain': 2,
-    '@typescript-eslint/prefer-nullish-coalescing': 2,
-    '@typescript-eslint/restrict-template-expressions': 0,
-    '@typescript-eslint/no-floating-promises': [
-        'error',
-        { ignoreIIFE: true, ignoreVoid: true },
-    ],
+    '@typescript-eslint/array-type': ['error', { default: 'array' }],
+    '@typescript-eslint/consistent-indexed-object-style': 2,
+    '@typescript-eslint/consistent-type-definitions': 1,
     '@typescript-eslint/naming-convention': [
         'error',
         {
             selector: 'interface',
             format: ['PascalCase'],
-            custom: {
-                regex: '^I[A-Z]',
-                match: false,
-            },
+            custom: { regex: '^I[A-Z]', match: false },
         },
     ],
-    '@typescript-eslint/unbound-method': [
-        'error',
-        {
-            ignoreStatic: true,
-        },
-    ],
-    '@typescript-eslint/no-unused-vars': [
-        'warn',
-        { args: 'all', argsIgnorePattern: '^_' },
-    ],
-    '@typescript-eslint/array-type': [
-        'error',
-        {
-            default: 'array',
-        },
-    ],
-    '@typescript-eslint/consistent-indexed-object-style': 2,
-    '@typescript-eslint/consistent-type-definitions': 1,
+    '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
+    '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-extra-non-null-assertion': 2,
+    '@typescript-eslint/no-extraneous-class': 0,
+    '@typescript-eslint/no-floating-promises': [
+        'error',
+        { ignoreIIFE: true, ignoreVoid: true },
+    ],
     '@typescript-eslint/no-for-in-array': 2,
     '@typescript-eslint/no-inferrable-types': 2,
     '@typescript-eslint/no-magic-numbers': 0,
@@ -88,12 +69,28 @@ const tsRules = {
     '@typescript-eslint/no-unnecessary-condition': 2,
     '@typescript-eslint/no-unnecessary-qualifier': 1,
     '@typescript-eslint/no-unnecessary-type-arguments': 2,
+    '@typescript-eslint/no-unsafe-enum-comparison': 0,
     '@typescript-eslint/no-unused-expressions': 1,
+    '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { args: 'all', argsIgnorePattern: '^_' },
+    ],
     '@typescript-eslint/no-useless-constructor': 1,
     '@typescript-eslint/no-useless-empty-export': 1,
     '@typescript-eslint/prefer-for-of': 1,
     '@typescript-eslint/prefer-includes': 1,
+    '@typescript-eslint/prefer-nullish-coalescing': 2,
+    '@typescript-eslint/prefer-optional-chain': 2,
+    '@typescript-eslint/require-await': 2,
+    '@typescript-eslint/restrict-template-expressions': 0,
     '@typescript-eslint/switch-exhaustiveness-check': 1,
+    'n/no-process-exit': 0,
+    'prefer-template': 1,
+    'sonarjs/elseif-without-else': 0,
+    'tsdoc/syntax': 1,
+    'unicorn/catch-error-name': 0,
+    'unicorn/explicit-length-check': 0,
+    'unicorn/no-process-exit': 0,
 };
 
 const rules = {

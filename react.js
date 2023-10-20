@@ -20,6 +20,7 @@ const reactRules = {
     'react-hooks/exhaustive-deps': 0,
     'react/display-name': 0,
     'react/prop-types': 0,
+    'react/jsx-key': 2,
 };
 const testPlugins = ['plugin:testing-library/react'];
 
