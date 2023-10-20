@@ -19,6 +19,7 @@ const extendsList = [
     'plugin:promise/recommended',
     'plugin:prettier/recommended',
     'prettier',
+    'tsdoc',
 ];
 const defaultRules = {
     'no-console': 1,
