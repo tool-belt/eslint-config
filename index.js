@@ -19,7 +19,6 @@ const extendsList = [
     'plugin:promise/recommended',
     'plugin:prettier/recommended',
     'prettier',
-    'eslint-plugin-tsdoc',
 ];
 const defaultRules = {
     'no-console': 1,
@@ -88,7 +87,6 @@ const tsRules = {
     'n/no-process-exit': 0,
     'prefer-template': 1,
     'sonarjs/elseif-without-else': 0,
-    'tsdoc/syntax': 1,
     'unicorn/catch-error-name': 0,
     'unicorn/explicit-length-check': 0,
     'unicorn/no-process-exit': 0,
