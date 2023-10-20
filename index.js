@@ -19,7 +19,7 @@ const extendsList = [
     'plugin:promise/recommended',
     'plugin:prettier/recommended',
     'prettier',
-    'tsdoc',
+    'eslint-plugin-tsdoc',
 ];
 const defaultRules = {
     'no-console': 1,
