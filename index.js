@@ -144,6 +144,7 @@ const testing = {
         'sonarjs/cognitive-complexity': 0,
         'sonarjs/no-duplicate-string': 0,
         'sonarjs/no-identical-functions': 0,
+        'typescript-eslint/no-confusing-void-expression': 0,
         'unicorn/error-message': 0,
         'unicorn/no-await-expression-member': 0,
     },
