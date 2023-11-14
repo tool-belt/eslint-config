@@ -18,6 +18,7 @@ const extendsList = [
     'plugin:n/recommended',
     'plugin:promise/recommended',
     'plugin:prettier/recommended',
+    'plugin:typescript-sort-keys/recommended',
     'prettier',
 ];
 const defaultRules = {
@@ -35,6 +36,11 @@ const defaultRules = {
     'no-unused-expressions': 0,
     'no-useless-constructor': 0,
     'no-throw-literal': 0,
+    'sort-keys': [
+        'error',
+        'asc',
+        { caseSensitive: true, natural: true, minKeys: 2 },
+    ],
 };
 
 const tsRules = {
