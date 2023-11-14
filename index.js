@@ -1,4 +1,9 @@
-const plugins = ['simple-import-sort', 'unused-imports', 'optimize-regex'];
+const plugins = [
+    'simple-import-sort',
+    'unused-imports',
+    'optimize-regex',
+    'sort-keys-fix',
+];
 const extendsList = [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -19,6 +24,7 @@ const extendsList = [
     'plugin:promise/recommended',
     'plugin:prettier/recommended',
     'plugin:typescript-sort-keys/recommended',
+
     'prettier',
 ];
 const defaultRules = {
@@ -36,10 +42,10 @@ const defaultRules = {
     'no-unused-expressions': 0,
     'no-useless-constructor': 0,
     'no-throw-literal': 0,
-    'sort-keys': [
+    'sort-keys-fix/sort-keys-fix': [
         'error',
         'asc',
-        { caseSensitive: true, natural: true, minKeys: 2 },
+        { caseSensitive: true, natural: true },
     ],
 };
 
