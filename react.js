@@ -22,6 +22,13 @@ const reactRules = {
     'react/prop-types': 0,
     'react/jsx-key': 2,
 };
+
+const rules = {
+    ...reactRules,
+    'react/react-in-jsx-scope': 0,
+    'unicorn/prefer-node-protocol': 0,
+};
+
 const testPlugins = ['plugin:testing-library/react'];
 
 const overrides = base.overrides.map((override) => ({
@@ -38,11 +45,11 @@ const overrides = base.overrides.map((override) => ({
                   (extendEntry) => !extendEntry.includes('typescript'),
               )
         : override.files[0].includes('test')
-        ? [...extendsList, ...testPlugins]
-        : extendsList,
+          ? [...extendsList, ...testPlugins]
+          : extendsList,
     rules: {
         ...override.rules,
-        ...reactRules,
+        ...rules,
     },
 }));
 
