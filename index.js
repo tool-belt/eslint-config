@@ -7,28 +7,30 @@ const plugins = [
 const extendsList = [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-type-checked',
-    'plugin:@typescript-eslint/strict',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/strict-type-checked',
-    'plugin:@typescript-eslint/stylistic',
+    'plugin:@typescript-eslint/strict',
     'plugin:@typescript-eslint/stylistic-type-checked',
-    'plugin:unicorn/recommended',
+    'plugin:@typescript-eslint/stylistic',
     'plugin:eslint-comments/recommended',
     'plugin:import/errors',
-    'plugin:import/warnings',
     'plugin:import/typescript',
-    'plugin:sonarjs/recommended',
-    'plugin:@typescript-eslint/recommended',
+    'plugin:import/warnings',
+    'plugin:markdown/recommended',
     'plugin:n/recommended',
     'plugin:promise/recommended',
-    'plugin:prettier/recommended',
+    'plugin:sonarjs/recommended',
     'plugin:typescript-sort-keys/recommended',
-
+    'plugin:unicorn/recommended',
+    // prettier must come last
+    'plugin:prettier/recommended',
     'prettier',
 ];
 const defaultRules = {
     'no-console': 1,
+    'prefer-destructuring': 2,
     'curly': 2,
     'eqeqeq': 2,
     'prefer-const': [
@@ -133,7 +135,7 @@ const rules = {
     'unicorn/prevent-abbreviations': 0,
     'unused-imports/no-unused-imports': 2,
 };
-const extensions = 'ts,tsx,js,jsx';
+const extensions = 'ts,tsx,js,jsx,md,mdx';
 
 const testing = {
     files: [
@@ -178,5 +180,5 @@ module.exports = {
     extends: extendsList,
     rules,
     overrides: [testing],
-    ignorePatterns: ['*.shim.d.ts', '.eslintrc.js'],
+    ignorePatterns: ['*.d.ts', '.eslintrc.js'],
 };
