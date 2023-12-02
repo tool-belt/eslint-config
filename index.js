@@ -105,6 +105,7 @@ const rules = {
     ...tsRules,
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
     'eslint-comments/no-unused-disable': 2,
+    'eslint-disable prefer-destructuring': 0,
     'import/default': 0,
     'import/first': 2,
     'import/named': 0,
