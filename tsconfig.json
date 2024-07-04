@@ -1,0 +1,20 @@
+{
+    "include": ["index.ts", "eslint.config.js"],
+    "compilerOptions": {
+        "allowJs": true,
+        "alwaysStrict": true,
+        "baseUrl": ".",
+        "module": "NodeNext",
+        "moduleResolution": "nodeNext",
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "target": "ESNext",
+        "outDir": "dist"
+    }
+}
