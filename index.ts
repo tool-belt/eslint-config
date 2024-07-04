@@ -1,22 +1,29 @@
-import globals from 'globals';
+/* eslint-disable unicorn/no-await-expression-member,@typescript-eslint/no-unsafe-member-access */
 import eslintJS from '@eslint/js';
-import eslintConfigPrettier from 'eslint-config-prettier';
-import eslintPluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
-import eslintTS from 'typescript-eslint';
-import eslintSvelte from 'eslint-plugin-svelte';
-import eslintPluginReact from 'eslint-plugin-react';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import eslintPluginJSDoc from 'eslint-plugin-jsdoc';
-import eslintPluginMarkdown from 'eslint-plugin-markdown';
-import eslintPluginUnicorn from 'eslint-plugin-unicorn';
-import eslintPluginPromise from 'eslint-plugin-promise';
-import eslintPluginUnusedImports from 'eslint-plugin-unused-imports';
-import eslintPluginNode from 'eslint-plugin-n';
-import eslintPluginJSXA11y from 'eslint-plugin-jsx-a11y';
-
 import type { Linter } from 'eslint';
-import { ParserOptions } from '@typescript-eslint/parser';
+// @ts-expect-error, untyped import
+import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintPluginJSDoc from 'eslint-plugin-jsdoc';
+// @ts-expect-error, untyped import
+import eslintPluginMarkdown from 'eslint-plugin-markdown';
+import eslintPluginNode from 'eslint-plugin-n';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+// @ts-expect-error, untyped import
+import eslintPluginPromise from 'eslint-plugin-promise';
+import eslintPluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
+// @ts-expect-error, untyped import
+import eslintPluginUnicorn from 'eslint-plugin-unicorn';
+// @ts-expect-error, untyped import
+import eslintPluginUnusedImports from 'eslint-plugin-unused-imports';
+import globals from 'globals';
+import eslintTS from 'typescript-eslint';
 
+/**
+ *
+ * @param globPatterns - The file patterns to append the provided extensions to.
+ * @param extensions - The file extensions to append to the provided glob patterns.
+ * @returns A list of file patterns with the provided extensions.
+ */
 function createForExtensions(
     globPatterns: string[],
     extensions: string[],
@@ -26,7 +33,21 @@ function createForExtensions(
     );
 }
 
-export function createConfig({
+/**
+ * Asynchronously creates a configuration array for ESLint based on the provided options.
+ * This configuration is tailored to support JavaScript, TypeScript, and optionally React, Svelte, and browser environments.
+ * It integrates various ESLint plugins and configurations to enforce code quality and style.
+ * @param options - The configuration options.
+ * @param [options.tsconfigRootDir] - The root directory for the TypeScript configuration files.
+ * @param [options.browser] - Flag to indicate if the environment should be configured for browser globals.
+ * @param [options.react] - Flag to indicate if React specific linting rules should be applied.
+ * @param [options.svelte] - Flag to indicate if Svelte specific linting rules should be applied.
+ * @param [options.project] - The path(s) to the TypeScript configuration file(s).
+ * @param [options.ecmaVersion] - The ECMAScript version to be used.
+ * @returns A promise that resolves to an array of ESLint configurations.
+ * @throws {Error} If both React and Svelte options are set to true.
+ */
+export async function createConfig({
     tsconfigRootDir = '.',
     browser = false,
     react = false,
@@ -35,16 +56,61 @@ export function createConfig({
     ecmaVersion = 2024,
     ...restParserOptions
 }: {
-    browser: boolean;
-    react: boolean;
-    svelte: boolean;
-} & ParserOptions): Linter.FlatConfig[] {
+    browser?: boolean;
+    react?: boolean;
+    svelte?: boolean;
+} & Linter.ParserOptions = {}): Promise<Linter.FlatConfig[]> {
     if (svelte && react) {
         throw new Error(
             'Cannot use both react and svelte for the same configuration',
         );
     }
 
+    const configNode =
+        !svelte && !react && !browser
+            ? [
+                  eslintPluginNode.configs['flat/recommended'],
+                  {
+                      rules: {
+                          'n/no-extraneous-import': 'error',
+                          'n/no-missing-import': 'error',
+                          'n/no-process-exit': 'error',
+                      },
+                  },
+              ]
+            : [];
+
+    const configPrettier = svelte
+        ? [
+              ...(await import('eslint-plugin-svelte')).configs[
+                  'flat/recommended'
+              ],
+              eslintPluginPrettierRecommended,
+              eslintConfigPrettier,
+              ...(await import('eslint-plugin-svelte')).configs[
+                  'flat/prettier'
+              ],
+              {
+                  files: ['**/*.svelte'],
+                  languageOptions: {
+                      parserOptions: {
+                          parser: eslintTS.parser,
+                      },
+                  },
+              },
+          ]
+        : [eslintPluginPrettierRecommended, eslintConfigPrettier];
+
+    const configReact = react
+        ? [
+              // @ts-expect-error, untyped import
+              (await import('eslint-plugin-react')).configs.recommended,
+              // @ts-expect-error, untyped import
+              (await import('eslint-plugin-jsx-a11y')).configs.recommended,
+          ]
+        : [];
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return [
         eslintJS.configs.recommended,
         {
@@ -173,24 +239,27 @@ export function createConfig({
                 'unicorn/no-await-expression-member': 'off',
             },
         },
-        ...(!svelte && !react && !browser
-            ? [
-                  eslintPluginNode.configs.recommended,
-                  {
-                      rules: {
-                          'n/no-extraneous-import': 'error',
-                          'n/no-missing-import': 'error',
-                          'n/no-process-exit': 'error',
-                      },
-                  },
-              ]
-            : []),
-        eslintPluginPrettierRecommended,
-        eslintPluginJSDoc.configs['recommended-typescript'],
-        eslintPluginMarkdown.configs.recommended,
+        ...configNode,
+        eslintPluginJSDoc.configs['flat/recommended-typescript'],
+        eslintPluginPromise.configs['flat/recommended'],
         eslintPluginUnicorn.configs['flat/recommended'],
         {
+            plugins: {
+                'simple-import-sort': eslintPluginSimpleImportSort,
+                'unused-imports': eslintPluginUnusedImports,
+                'markdown': eslintPluginMarkdown,
+            },
             rules: {
+                'jsdoc/no-defaults': 'off',
+                'jsdoc/no-types': 'off',
+                'jsdoc/require-jsdoc': [
+                    'error',
+                    {
+                        publicOnly: true,
+                    },
+                ],
+                'simple-import-sort/exports': 'error',
+                'simple-import-sort/imports': 'error',
                 'unicorn/catch-error-name': 'off',
                 'unicorn/explicit-length-check': 'off',
                 'unicorn/no-array-callback-reference': 'off',
@@ -201,40 +270,14 @@ export function createConfig({
                 'unicorn/no-useless-undefined': 'off',
                 'unicorn/prefer-module': 'off',
                 'unicorn/prevent-abbreviations': 'off',
-            },
-        },
-        eslintPluginPromise.configs['flat/recommended'],
-        ...(react
-            ? [
-                  eslintPluginReact.configs.recommended,
-                  eslintPluginJSXA11y.configs.recommended,
-              ]
-            : []),
-        {
-            plugins: {
-                'simple-import-sort': eslintPluginSimpleImportSort,
-                'unused-imports': eslintPluginUnusedImports,
-            },
-            rules: {
-                'simple-import-sort/imports': 'error',
-                'simple-import-sort/exports': 'error',
                 'unused-imports/no-unused-imports': 'error',
             },
         },
-        ...(svelte
-            ? [
-                  ...eslintSvelte.configs['flat/recommended'],
-                  eslintConfigPrettier,
-                  ...eslintSvelte.configs['flat/prettier'],
-                  {
-                      files: ['**/*.svelte'],
-                      languageOptions: {
-                          parserOptions: {
-                              parser: eslintTS.parser,
-                          },
-                      },
-                  },
-              ]
-            : [eslintConfigPrettier]),
-    ];
+        {
+            files: ['**/*.md'],
+            processor: 'markdown/markdown',
+        },
+        ...configReact,
+        ...configPrettier,
+    ] satisfies Linter.FlatConfig[];
 }

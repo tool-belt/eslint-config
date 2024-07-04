@@ -1,7 +1,6 @@
 {
-    "include": ["index.ts", "eslint.config.js"],
+    "include": ["index.ts"],
     "compilerOptions": {
-        "allowJs": true,
         "alwaysStrict": true,
         "baseUrl": ".",
         "module": "NodeNext",
@@ -14,6 +13,7 @@
         "strict": true,
         "strictFunctionTypes": true,
         "strictNullChecks": true,
+        "declaration": true,
         "target": "ESNext",
         "outDir": "dist"
     }

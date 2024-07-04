@@ -1,3 +1,3 @@
-import { createConfig } from './index';
+import { createConfig } from './dist/index.js';
 
-export default createConfig();
+export default  await createConfig();
