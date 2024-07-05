@@ -42,6 +42,7 @@ function createForExtensions(
  * @param [options.browser] - Flag to indicate if the environment should be configured for browser globals.
  * @param [options.react] - Flag to indicate if React specific linting rules should be applied.
  * @param [options.svelte] - Flag to indicate if Svelte specific linting rules should be applied.
+ * @param [options.node] - Flag to indicate if Node.js specific linting rules should be applied.
  * @param [options.project] - The path(s) to the TypeScript configuration file(s).
  * @param [options.ecmaVersion] - The ECMAScript version to be used.
  * @returns A promise that resolves to an array of ESLint configurations.
@@ -52,6 +53,7 @@ export async function createConfig({
     browser = false,
     react = false,
     svelte = false,
+    node = false,
     project = ['./tsconfig.json'],
     ecmaVersion = 2024,
     ...restParserOptions
@@ -59,6 +61,7 @@ export async function createConfig({
     browser?: boolean;
     react?: boolean;
     svelte?: boolean;
+    node?: boolean;
 } & Linter.ParserOptions = {}): Promise<Linter.FlatConfig[]> {
     if (svelte && react) {
         throw new Error(
@@ -66,19 +69,18 @@ export async function createConfig({
         );
     }
 
-    const configNode =
-        !svelte && !react && !browser
-            ? [
-                  eslintPluginNode.configs['flat/recommended'],
-                  {
-                      rules: {
-                          'n/no-extraneous-import': 'error',
-                          'n/no-missing-import': 'error',
-                          'n/no-process-exit': 'error',
-                      },
+    const configNode = node
+        ? [
+              eslintPluginNode.configs['flat/recommended-module'],
+              {
+                  rules: {
+                      'n/no-extraneous-import': 'error',
+                      'n/no-missing-import': 'error',
+                      'n/no-process-exit': 'error',
                   },
-              ]
-            : [];
+              },
+          ]
+        : [];
 
     const configPrettier = svelte
         ? [
@@ -204,6 +206,8 @@ export async function createConfig({
                 '@typescript-eslint/no-unsafe-assignment': 'off',
                 '@typescript-eslint/no-non-null-assertion': 'off',
                 '@typescript-eslint/prefer-as-const': 'warn',
+                '@typescript-eslint/no-explicit-any': 'off',
+                'n/no-missing-import': 'off',
             },
         },
         {
