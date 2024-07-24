@@ -1,4 +1,5 @@
 /* eslint-disable unicorn/no-await-expression-member,@typescript-eslint/no-unsafe-member-access */
+import { fixupPluginRules } from '@eslint/compat';
 import eslintJS from '@eslint/js';
 import type { Linter } from 'eslint';
 // @ts-expect-error, untyped import
@@ -10,6 +11,10 @@ import eslintPluginNode from 'eslint-plugin-n';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 // @ts-expect-error, untyped import
 import eslintPluginPromise from 'eslint-plugin-promise';
+// @ts-expect-error, untyped import
+import eslintPluginReact from 'eslint-plugin-react';
+// @ts-expect-error, untyped import
+import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
 import eslintPluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
 // @ts-expect-error, untyped import
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
@@ -45,24 +50,30 @@ function createForExtensions(
  * @param [options.node] - Flag to indicate if Node.js specific linting rules should be applied.
  * @param [options.project] - The path(s) to the TypeScript configuration file(s).
  * @param [options.ecmaVersion] - The ECMAScript version to be used.
+ * @param options.jsdoc
+ * @param options.prettier
  * @returns A promise that resolves to an array of ESLint configurations.
  * @throws {Error} If both React and Svelte options are set to true.
  */
 export async function createConfig({
-    tsconfigRootDir = '.',
     browser = false,
+    ecmaVersion = 2024,
+    jsdoc = false,
+    node = false,
+    prettier = true,
+    project = ['./tsconfig.json'],
     react = false,
     svelte = false,
-    node = false,
-    project = ['./tsconfig.json'],
-    ecmaVersion = 2024,
+    tsconfigRootDir = '.',
     ...restParserOptions
 }: {
     browser?: boolean;
+    jsdoc?: boolean;
+    node?: boolean;
+    prettier?: boolean;
     react?: boolean;
     svelte?: boolean;
-    node?: boolean;
-} & Linter.ParserOptions = {}): Promise<Linter.FlatConfig[]> {
+} & Linter.ParserOptions = {}): Promise<Linter.Config[]> {
     if (svelte && react) {
         throw new Error(
             'Cannot use both react and svelte for the same configuration',
@@ -101,14 +112,40 @@ export async function createConfig({
                   },
               },
           ]
-        : [eslintPluginPrettierRecommended, eslintConfigPrettier];
+        : prettier
+          ? [eslintPluginPrettierRecommended, eslintConfigPrettier]
+          : [eslintConfigPrettier];
 
     const configReact = react
         ? [
-              // @ts-expect-error, untyped import
-              (await import('eslint-plugin-react')).configs.recommended,
-              // @ts-expect-error, untyped import
-              (await import('eslint-plugin-jsx-a11y')).configs.recommended,
+              {
+                  plugins: {
+                      'react': eslintPluginReact,
+
+                      'react-hooks': fixupPluginRules(
+                          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+                          eslintPluginReactHooks,
+                      ),
+                  },
+              },
+          ]
+        : [];
+
+    const jsdocPlugin = jsdoc
+        ? [
+              eslintPluginJSDoc.configs['flat/recommended-typescript'],
+              {
+                  rules: {
+                      'jsdoc/no-defaults': 'off',
+                      'jsdoc/no-types': 'off',
+                      'jsdoc/require-jsdoc': [
+                          'error',
+                          {
+                              publicOnly: true,
+                          },
+                      ],
+                  },
+              },
           ]
         : [];
 
@@ -207,6 +244,7 @@ export async function createConfig({
                 '@typescript-eslint/no-non-null-assertion': 'off',
                 '@typescript-eslint/prefer-as-const': 'warn',
                 '@typescript-eslint/no-explicit-any': 'off',
+                '@typescript-eslint/restrict-template-expressions': 'off',
                 'n/no-missing-import': 'off',
             },
         },
@@ -244,7 +282,7 @@ export async function createConfig({
             },
         },
         ...configNode,
-        eslintPluginJSDoc.configs['flat/recommended-typescript'],
+        ...jsdocPlugin,
         eslintPluginPromise.configs['flat/recommended'],
         eslintPluginUnicorn.configs['flat/recommended'],
         {
@@ -254,14 +292,6 @@ export async function createConfig({
                 'markdown': eslintPluginMarkdown,
             },
             rules: {
-                'jsdoc/no-defaults': 'off',
-                'jsdoc/no-types': 'off',
-                'jsdoc/require-jsdoc': [
-                    'error',
-                    {
-                        publicOnly: true,
-                    },
-                ],
                 'simple-import-sort/exports': 'error',
                 'simple-import-sort/imports': 'error',
                 'unicorn/catch-error-name': 'off',
@@ -283,5 +313,5 @@ export async function createConfig({
         },
         ...configReact,
         ...configPrettier,
-    ] satisfies Linter.FlatConfig[];
+    ] satisfies Linter.Config[];
 }
