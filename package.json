@@ -36,13 +36,13 @@
     "dependencies": {
         "@eslint/compat": "^1.1.1",
         "@eslint/eslintrc": "^3.1.0",
-        "@eslint/js": "^9.7.0",
+        "@eslint/js": "^9.8.0",
         "@types/eslint__js": "^8.42.3",
         "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-jsdoc": "^48.8.3",
+        "eslint-plugin-jsdoc": "^48.10.2",
         "eslint-plugin-jsx-a11y": "^6.9.0",
         "eslint-plugin-markdown": "^5.1.0",
-        "eslint-plugin-n": "17.9.0",
+        "eslint-plugin-n": "17.10.1",
         "eslint-plugin-prettier": "^5.2.1",
         "eslint-plugin-promise": "7.0.0",
         "eslint-plugin-react": "^7.35.0",
@@ -50,14 +50,14 @@
         "eslint-plugin-simple-import-sort": "^12.1.1",
         "eslint-plugin-sort-keys-fix": "^1.1.2",
         "eslint-plugin-svelte": "^2.43.0",
-        "eslint-plugin-unicorn": "54.0.0",
+        "eslint-plugin-unicorn": "55.0.0",
         "eslint-plugin-unused-imports": "^4.0.1",
-        "globals": "^15.8.0",
-        "typescript-eslint": "^7.17.0"
+        "globals": "^15.9.0",
+        "typescript-eslint": "^8.0.0"
     },
     "devDependencies": {
         "@types/eslint__eslintrc": "^2.1.2",
-        "eslint": "^9.7.0",
+        "eslint": "^9.8.0",
         "prettier": "^3.3.3",
         "rimraf": "^6.0.1",
         "typescript": "^5.5.4"

@@ -16,7 +16,6 @@ import eslintPluginReact from 'eslint-plugin-react';
 // @ts-expect-error, untyped import
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
 import eslintPluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
-// @ts-expect-error, untyped import
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 // @ts-expect-error, untyped import
 import eslintPluginUnusedImports from 'eslint-plugin-unused-imports';
@@ -121,7 +120,6 @@ export async function createConfig({
               {
                   plugins: {
                       'react': eslintPluginReact,
-
                       'react-hooks': fixupPluginRules(
                           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                           eslintPluginReactHooks,
