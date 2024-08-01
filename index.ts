@@ -131,8 +131,8 @@ export async function createConfig({
 
     const jsdocPlugin = jsdoc
         ? [
-              eslintPluginJSDoc.configs['flat/recommended-typescript'],
               {
+                  ...eslintPluginJSDoc.configs['flat/recommended-typescript'],
                   rules: {
                       'jsdoc/no-defaults': 'off',
                       'jsdoc/no-types': 'off',
@@ -143,6 +143,7 @@ export async function createConfig({
                           },
                       ],
                   },
+                  ignores: ['**/*.tsx'],
               },
           ]
         : [];
